@@ -1,0 +1,27 @@
+{
+    "common": {
+        "home": "ទំព័រដើម",
+        "dashboard": "ផ្ទាំងគ្រប់គ្រង",
+        "settings": "ការកំណត់",
+        "profile": "ប្រវត្តិរូប",
+        "logout": "ចាកចេញ",
+        "welcome": "សូមស្វាគមន៍",
+        "search": "ស្វែងរក"
+    },
+    "auth": {
+        "login": "ចូលគណនី",
+        "register": "ចុះឈ្មោះ",
+        "email": "អ៊ីមែល",
+        "password": "លេខសម្ងាត់",
+        "remember_me": "ចងចាំខ្ញុំ",
+        "forgot_password": "ភ្លេចលេខសម្ងាត់?"
+    },
+    "menu": {
+        "dashboard" : "ផ្ទាំងគ្រប់គ្រង",
+        "item_category": "ប្រភេទទំនិញ",
+        "select_language": "ជ្រើសរើសភាសា",
+        "english": "អង់គ្លេស",
+        "khmer": "ខ្មែរ"
+    }
+    
+}

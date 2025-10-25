@@ -8,7 +8,7 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
   <!-- 👉 Dashboards -->
   <VerticalNavGroup
     :item="{
-      title: 'Dashboards',
+      title: `${$t('menu.dashboard')}`,
       badgeContent: '5',
       badgeClass: 'bg-error',
       icon: 'bx-home-smile',
@@ -23,7 +23,7 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
   </VerticalNavGroup>
   <VerticalNavGroup
     :item="{
-      title: 'Items',
+      title: `${$t('menu.item')}`, 
       badgeContent: '5',
       badgeClass: 'bg-error',
       icon: 'bx-home-smile',
@@ -31,7 +31,7 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
   >
     <VerticalNavLink
       :item="{
-        title: 'Item Category',
+        title: `${$t('menu.item_category')}`,
         to: '/item-category',
       }"
     />  

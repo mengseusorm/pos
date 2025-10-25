@@ -1,0 +1,27 @@
+{
+    "common": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "settings": "Settings",
+        "profile": "Profile",
+        "logout": "Logout",
+        "welcome": "Welcome",
+        "search": "Search"
+    },
+    "auth": {
+        "login": "Login",
+        "register": "Register",
+        "email": "Email",
+        "password": "Password",
+        "remember_me": "Remember me",
+        "forgot_password": "Forgot Password?"
+    },
+    "menu": {
+        "dashboard" : "Dashboard",
+        "item_category": "Item Category",
+        "item": "Item",
+        "select_language": "Select Language",
+        "english": "English",
+        "khmer": "Khmer"
+    }
+}
