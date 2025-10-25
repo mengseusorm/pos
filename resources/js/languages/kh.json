@@ -17,11 +17,28 @@
         "forgot_password": "ភ្លេចលេខសម្ងាត់?"
     },
     "menu": {
-        "dashboard" : "ផ្ទាំងគ្រប់គ្រង",
+        "dashboard": "ផ្ទាំងគ្រប់គ្រង",
         "item_category": "ប្រភេទទំនិញ",
         "select_language": "ជ្រើសរើសភាសា",
         "english": "អង់គ្លេស",
         "khmer": "ខ្មែរ"
+    },
+    "label": {
+        "add": "បន្ថែម",
+        "edit": "កែប្រែ",
+        "delete": "លុប",
+        "save": "រក្សាទុក",
+        "cancel": "បោះបង់",
+        "close": "បិទ",
+        "back": "ត្រឡប់ក្រោយ",
+        "submit": "ដាក់ស្នើ",
+        "name": "ឈ្មោះ",
+        "description": "ការពិពណ៌នា",
+        "add_item_category": "បន្ថែមប្រភេទទំនិញ",
+        "add_item": "បន្ថែមទំនិញ",
+        "edit_item_category": "កែប្រែប្រភេទទំនិញ",
+        "edit_item": "កែប្រែទំនិញ",
+        "delete_item_category": "លុបប្រភេទទំនិញ",
+        "delete_item": "លុបទំនិញ"
     }
-    
 }

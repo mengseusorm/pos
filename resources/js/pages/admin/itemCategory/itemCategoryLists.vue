@@ -1,7 +1,10 @@
 <template> 
 <VRow>
     <VCol cols="12">
-      <VCard title="Basic"> 
+      <div class="text-end mb-6"> 
+        <ItemCategoryCeate translation-key="label.add_item_category"/> 
+      </div>
+      <VCard title="Basic">  
         <VTable>
           <thead>
             <tr>
@@ -49,10 +52,17 @@
       </VCard>
     </VCol>
   </VRow>
-</template>
-
-
+</template> 
 <script setup>
+import ItemCategoryCeate from './itemCategoryCeate.vue';
+ 
+// import CreateBtnModal from '@/layouts/components/button/CreateBtnModal.vue';
+
+// const handleAddClick = () => {
+  
+//   // Add your modal opening logic here
+//   console.log('Add button clicked')
+// }
 const desserts = [
   {
     dessert: 'Frozen Yogurt',
