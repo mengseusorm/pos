@@ -1,23 +1,3 @@
-<script setup>
-import { useAuthStore } from '@/plugins/router/store/authStore';
-import avatar1 from '@images/avatars/avatar-1.png';
-import { useRoute, useRouter } from 'vue-router';
-
-const authStore = useAuthStore();
-const router = useRouter();
-const route = useRoute();
-const handleLogout = async () => {
-  try {
-    const logout = await authStore.logout();
-    if (logout.success) {
-      await router.push('/login');
-    }
-  } catch (err) {
-    console.error('Logout Error:', err);
-  }
-};
-</script>
-
 <template>
   <VBadge
     dot
@@ -142,3 +122,21 @@ const handleLogout = async () => {
     </VAvatar>
   </VBadge>
 </template>
+<script setup>
+import { useAuthStore } from '@/plugins/router/store/authStore';
+import avatar1 from '@images/avatars/avatar-1.png';
+import { useRouter } from 'vue-router';
+
+const authStore = useAuthStore();
+const router = useRouter(); 
+const handleLogout = async () => {
+  try {
+    const logout = await authStore.logout();
+    if (logout.success) {
+      await router.push('/login');
+    }
+  } catch (err) {
+    console.error('Logout Error:', err);
+  }
+};
+</script>

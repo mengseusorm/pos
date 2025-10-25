@@ -9,8 +9,7 @@
       <VCardText>
           <VAlert v-if="error" type="error" variant="tonal" prominent border="left" class="mb-4" dismissible @click:close="error = ''">
             {{ error }}
-          </VAlert>
-          <!-- <VForm @submit.prevent="$router.push('/')"> -->
+          </VAlert> 
           <VForm @submit.prevent="handleLogin">
             <VRow> 
               <VCol cols="12">
@@ -55,15 +54,13 @@
 
 <script setup> 
 import { useAuthStore } from '@/plugins/router/store/authStore';
-import { useRoute, useRouter } from 'vue-router';
-const router = useRouter();
-const route = useRoute();
-
+import { useRouter } from 'vue-router';
+const router = useRouter(); 
 const authStore = useAuthStore();
 
 const form = ref({
-  email: 'admin@example.com',
-  password: '123456',
+  email: '',
+  password: '',
   remember: false,
 })
 
@@ -77,11 +74,9 @@ const handleLogin = async () => {
   try {
     const login = await authStore.login(form.value);
     
-    if (login.success) {
-      // Redirect to dashboard on successful login
+    if (login.success) { 
       await router.replace('/dashboard');
-    } else {
-      // Handle login failure
+    } else { 
       error.value = login.message;
     }
   } catch (err) {
