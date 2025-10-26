@@ -39,6 +39,15 @@
         "edit_item_category": "កែប្រែប្រភេទទំនិញ",
         "edit_item": "កែប្រែទំនិញ",
         "delete_item_category": "លុបប្រភេទទំនិញ",
-        "delete_item": "លុបទំនិញ"
-    }
+        "delete_item": "លុបទំនិញ",
+        "active": "សកម្ម",
+        "inactive": "អសកម្ម",
+        "status": "ស្ថានភាព",
+        "action": "សកម្មភាព"
+    },
+    "message": [
+        {
+            "item_category_created_successfully": "Item category created successfully"
+        }
+    ]
 }

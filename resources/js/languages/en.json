@@ -27,6 +27,7 @@
     "label": {
         "add": "Add",
         "edit": "Edit",
+        "view" : "View",
         "delete": "Delete",
         "save": "Save",
         "cancel": "Cancel",
@@ -42,6 +43,13 @@
         "delete_item_category": "Delete Item Category",
         "delete_item": "Delete Item",
         "active": "Active",
-        "inactive": "Inactive"
-    }
+        "inactive": "Inactive",
+        "status": "Status",
+        "action": "Action"
+    },
+    "message": [
+        {
+            "item_category_created_successfully": "Item category created successfully"
+        }
+    ]
 }

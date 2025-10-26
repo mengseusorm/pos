@@ -10,12 +10,17 @@ declare module 'vue' {
     CardStatisticsHorizontal: typeof import('./resources/js/@core/components/cards/CardStatisticsHorizontal.vue')['default']
     CardStatisticsVertical: typeof import('./resources/js/@core/components/cards/CardStatisticsVertical.vue')['default']
     CardStatisticsWithImages: typeof import('./resources/js/@core/components/cards/CardStatisticsWithImages.vue')['default']
+    copy: typeof import('./resources/js/components/button/button/DelButton copy.vue')['default']
+    CreateBtnModal: typeof import('./resources/js/components/CreateBtnModal.vue')['default']
+    DelButton: typeof import('./resources/js/components/button/button/DelButton.vue')['default']
+    EditButton: typeof import('./resources/js/components/button/button/EditButton.vue')['default']
     ErrorHeader: typeof import('./resources/js/components/ErrorHeader.vue')['default']
     MoreBtn: typeof import('./resources/js/@core/components/MoreBtn.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ThemeSwitcher: typeof import('./resources/js/@core/components/ThemeSwitcher.vue')['default']
     UpgradeToPro: typeof import('./resources/js/components/UpgradeToPro.vue')['default']
+    ViewButton: typeof import('./resources/js/components/button/button/ViewButton.vue')['default']
     VueApexCharts: typeof import('vue3-apexcharts')['default']
   }
 }

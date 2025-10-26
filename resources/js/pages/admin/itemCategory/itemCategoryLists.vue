@@ -2,98 +2,103 @@
 <VRow>
     <VCol cols="12">
       <div class="text-end mb-6"> 
-        <ItemCategoryCeate translation-key="label.add_item_category"/> 
-      </div> 
-      <Alert/>
-      <VCard title="Basic">  
+        <ItemCategoryForm 
+          translation-key="label.add_item_category" 
+          @created="lists"
+        /> 
+      </div>  
+      <VCard title="">  
         <VTable>
           <thead>
             <tr>
               <th class="text-uppercase">
-                Desserts (100g Servings)
+                {{ $t('label.name') }}
+              </th> 
+              <th>
+                {{ $t('label.status') }}
               </th>
               <th>
-                calories
-              </th>
-              <th>
-                Fat(g)
-              </th>
-              <th>
-                Carbs(g)
-              </th>
-              <th>
-                protein(g)
-              </th>
+                {{ $t('label.action') }}
+              </th> 
             </tr>
           </thead>
 
           <tbody>
-            <tr
-              v-for="item in desserts"
-              :key="item.dessert"
-            >
+            <tr v-for="itemCategory in data" :key="itemCategory.id">
               <td>
-                {{ item.dessert }}
+                {{ itemCategory.name }}
+              </td> 
+              <td> 
+                <VChip :color="itemCategory.status === StatusEnum.ACTIVE ? 'success' : 'error'" size="small">
+                  {{ $t(enums[0].statusEnumEnumArray[itemCategory.status]) }}
+                </VChip>
               </td>
               <td>
-                {{ item.calories }}
-              </td>
-              <td>
-                {{ item.fat }}
-              </td>
-              <td>
-                {{ item.carbs }}
-              </td>
-              <td>
-                {{ item.protein }}
-              </td>
+                <ViewButton/>
+                <EditButton @click="editItemCategory(itemCategory)" />
+                <DelButton @click="deleteItemCategory(itemCategory)" /> 
+              </td>  
             </tr>
           </tbody>
         </VTable>
       </VCard>
+      
+      <!-- Edit Dialog -->
+      <ItemCategoryForm 
+        v-model="editDialog"
+        :edit-mode="true"
+        :item-data="selectedItem"
+        @updated="lists"
+      />
     </VCol>
-  </VRow>
+  </VRow> 
 </template> 
-<script setup>
-import Alert from '@/components/alert.vue';
-import ItemCategoryCeate from './itemCategoryCeate.vue'; 
 
+<script setup> 
+import { StatusEnum } from '@/Enums/StatusEnum';
+import ItemCategoryForm from './ItemCategoryForm.vue'; 
+import { api } from '@/plugins/router/store/authStore.js';
+import { onMounted, ref } from 'vue'
+import EditButton from '@/components/button/button/EditButton.vue';
+import DelButton from '@/components/button/button/DelButton.vue';
+import ViewButton from '@/components/button/button/ViewButton.vue';  
+import alertService from '@/service/alertService';
 
-const desserts = [
+const editDialog = ref(false) 
+const selectedItem = ref(null)
+const data = ref([])
+
+const enums = [
   {
-    dessert: 'Frozen Yogurt',
-    calories: 159,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Ice cream sandwich',
-    calories: 237,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Eclair',
-    calories: 262,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Cupcake',
-    calories: 305,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Gingerbread',
-    calories: 356,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
+    StatusEnum: StatusEnum,
+    statusEnumEnumArray: {
+        [StatusEnum.ACTIVE]: `label.active`,
+        [StatusEnum.INACTIVE]: `label.inactive`
+    },
+  }
 ]
-</script> 
+
+const lists = async () => {   
+  const response = await api.get('/admin/item-categories')
+  data.value = response.data?.data 
+}
+
+const editItemCategory = (itemCategory) => {
+  selectedItem.value = itemCategory
+  editDialog.value = true
+}
+
+const deleteItemCategory = async (itemCategory) => {
+  // Implement delete functionality
+  // const confirmed = await alertService.confirm('Are you sure?')
+  // if (confirmed) {
+  //   await api.delete(`/admin/item-categories/${itemCategory.id}`)
+  //   alertService.success('item_category_deleted_successfully')
+  //   await lists()
+  // }
+}
+ 
+onMounted(() => {   
+  lists()  
+}) 
+</script>

@@ -1,4 +1,6 @@
+import i18n from "@/plugins/i18n";
 import {useToast} from "vue-toastification";
+ 
 /*
  * Position
  * --------------
@@ -18,7 +20,7 @@ export default {
     },
 
     success: function (message = "Success", position = "top-right") {
-        const toast = useToast();
+        const toast = useToast(); 
         toast.success(message, {
             position: position,
         });
@@ -68,4 +70,36 @@ export default {
             position: position,
         });
     },
+
+    deleteConfirm: function (message = "Are you sure you want to delete this item?", position = "top-right") {
+        const toast = useToast();
+        return toast.error(message, {
+            position: position,
+            timeout: false,
+            closeOnClick: false,
+            draggable: false,
+            hideProgressBar: true,
+            closeButton: false,
+            toastClassName: 'toast-delete-confirm',
+            action: [
+                {
+                    text: 'yes',
+                    onClick: (e, toastObject) => {
+                        toastObject.goAway(0);
+                        return true;
+                    },
+                },
+                {
+                    text: 'no',
+                    onClick: (e, toastObject) => {
+                        toastObject.goAway(0);
+                        return false;
+                    },
+                },
+            ],
+        });
+    },
+
+    
+
 };
