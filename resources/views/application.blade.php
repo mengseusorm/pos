@@ -13,7 +13,7 @@
 <body>
   <div id="app">
     <div id="loading-bg">
-      <div class="loading-logo">
+      {{-- <div class="loading-logo">
          <!-- SVG Logo -->
          <svg width="100" height="80" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="100" height="80" />
@@ -48,7 +48,7 @@
             fill="white" fill-opacity="0.2" />
         </svg>
 
-      </div>
+      </div> --}}
       <div class="loading">
         <div class="effect-1 effects"></div>
         <div class="effect-2 effects"></div>

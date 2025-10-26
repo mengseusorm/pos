@@ -24,11 +24,9 @@ Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum'])->group(function(){ 
     Route::prefix('item-categories')->name('item-categories.')->group(function(){ 
-        Route::get('/', [ItemCategoryController::class, 'index'])->name('index');
-        Route::post('/', [ItemCategoryController::class, 'store'])->name('store');
-        Route::get('/{id}', [ItemCategoryController::class, 'show'])->name('show');
-        Route::put('/{id}', [ItemCategoryController::class, 'update'])->name('update');
-        Route::delete('/{id}', [ItemCategoryController::class, 'destroy'])->name('destroy');
+        Route::get('/', [ItemCategoryController::class, 'index']);
+        Route::post('/', [ItemCategoryController::class, 'store']); 
+        Route::match(['post', 'put', 'patch'], '/{itemCategory}', [ItemCategoryController::class, 'update']);  
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 });

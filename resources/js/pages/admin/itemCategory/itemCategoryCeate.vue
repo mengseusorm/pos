@@ -21,12 +21,24 @@
           <v-card-text>
             <VTextField
               v-model="formData.name"
-              :label="$t('label.name')" 
+              :label="$t('label.name')"  
               required
-              variant="outlined"
-              class="mb-3"
-            ></VTextField>
+              variant="outlined"   
+              :error-messages="errors?.name[0]"
+            ></VTextField>  
 
+            <VRadioGroup v-model="formData.status" row class="mb-3">
+              <VRadio 
+                :key="StatusEnum.ACTIVE"
+                :label="$t(`label.active`)"
+                :value="StatusEnum.ACTIVE"
+              ></VRadio>
+              <VRadio
+                :key="StatusEnum.INACTIVE"
+                :label="$t(`label.inactive`)"
+                :value="StatusEnum.INACTIVE"
+              ></VRadio>
+            </VRadioGroup>
             <VTextarea
               v-model="formData.description"
               :label="$t('label.description')"
@@ -59,43 +71,56 @@
         </v-card>
       </VForm>
     </v-dialog>
-  </VBtn>   
+  </VBtn>     
 </template>
 
 <script setup>  
+import { StatusEnum } from '@/Enums/StatusEnum'
 import { api } from '@/plugins/router/store/authStore.js'
-import { ref } from 'vue'
-
+import { ref } from 'vue'     
+import alertService from '@/service/alertService';
+  
 const props = defineProps({
   translationKey: {
     type: String,
     default: ''
   }
 })
-
+ 
 const emit = defineEmits(['created']) 
 const dialog = ref(false) 
 const form = ref(null)
+const errors = ref(null)
 
 const formData = ref({
   name: '',
+  status: StatusEnum.ACTIVE,
   description: ''
 })
   
 const reset = () => {
   formData.value = {
     name: "",
+    status: StatusEnum.ACTIVE,
     description: ""
   }
-  dialog.value = false
+  errors.value = null
+  dialog.value = false 
+  alertService.success('Success', 'Item category created successfully')
+  // toast.success('Item category created successfully')
+  // showSuccessAlert('Success', 'Item category created successfully')
 }  
 
-const save = async () => { 
-  try {
-    const response = await api.post('/admin/item-categories', formData.value) 
-    // emit('created', response.data) 
-  } catch (error) { 
-    console.log(error)
-  } 
+const save = async () => {   
+    const response = await api.post('/admin/item-categories', formData.value).then((res) => {
+      console.log(res)
+      if(res.status === 201){ 
+        
+        emit('created') 
+        reset() 
+      }
+    }).catch((err) => { 
+      errors.value = err.response.data.errors
+    })  
 }
 </script>

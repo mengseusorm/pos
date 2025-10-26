@@ -40,6 +40,8 @@
         "edit_item_category": "Edit Item Category",
         "edit_item": "Edit Item",
         "delete_item_category": "Delete Item Category",
-        "delete_item": "Delete Item"
+        "delete_item": "Delete Item",
+        "active": "Active",
+        "inactive": "Inactive"
     }
 }
