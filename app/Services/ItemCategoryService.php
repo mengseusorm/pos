@@ -6,6 +6,7 @@ use App\Http\Requests\ItemCategoryRequest;
 use App\Http\Requests\PaginateRequest;
 use App\Models\ItemCategory;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str; 
 
@@ -70,6 +71,32 @@ class ItemCategoryService
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
             throw new Exception($exception->getMessage(), 422);
+        }
+    }
+
+    public function update(ItemCategoryRequest $request, ItemCategory $itemCategory){
+        try {
+            $itemCategory->update($request->validated() + ['slug' => Str::slug($request->name)]);
+            if ($request->image) {
+                $itemCategory->clearMediaCollection('item-category');
+                $itemCategory->addMediaFromRequest('image')->toMediaCollection('item-category');
+            }
+            return $itemCategory;
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage());
+            throw new Exception($exception->getMessage(), 422);
+        }
+    }
+
+    
+    public function destroy(ItemCategory $itemCategory)
+    {
+        try { 
+            return $itemCategory->delete();  
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage()); 
+            return response(['status' => false, 'message' => $exception->getMessage()], 422);
+
         }
     }
 }

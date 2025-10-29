@@ -27,6 +27,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum'])->group(func
         Route::get('/', [ItemCategoryController::class, 'index']);
         Route::post('/', [ItemCategoryController::class, 'store']); 
         Route::match(['post', 'put', 'patch'], '/{itemCategory}', [ItemCategoryController::class, 'update']);  
+        Route::delete('/{itemCategory}', [ItemCategoryController::class, 'destroy']); 
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 });

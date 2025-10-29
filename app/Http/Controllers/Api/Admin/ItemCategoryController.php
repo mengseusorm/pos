@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ItemCategoryRequest;
 use App\Http\Requests\PaginateRequest;
 use App\Http\Resources\ItemCategoryResource;
+use App\Models\ItemCategory;
 use App\Services\ItemCategoryService;
-use Exception; 
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class ItemCategoryController extends Controller
 {
@@ -30,5 +32,25 @@ class ItemCategoryController extends Controller
             return response(['status' => false, 'message' => $exception->getMessage()], 422);
         }
         
+    }
+    public function update(
+        ItemCategoryRequest $request,
+        ItemCategory $itemCategory
+    ): \Illuminate\Http\Response | ItemCategoryResource | \Illuminate\Contracts\Foundation\Application | \Illuminate\Contracts\Routing\ResponseFactory {
+        try {
+            return new ItemCategoryResource($this->itemCategoryService->update($request, $itemCategory));
+        } catch (Exception $exception) {
+            return response(['status' => false, 'message' => $exception->getMessage()], 422);
+        }
+    }
+        public function destroy(
+        ItemCategory $itemCategory
+    ): \Illuminate\Http\Response | \Illuminate\Contracts\Foundation\Application | \Illuminate\Contracts\Routing\ResponseFactory {
+        try {
+            $this->itemCategoryService->destroy($itemCategory);
+            return response('', 202);
+        } catch (Exception $exception) {
+            return response(['status' => false, 'message' => $exception->getMessage()], 422);
+        }
     }
 }

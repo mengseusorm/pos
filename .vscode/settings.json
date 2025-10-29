@@ -105,5 +105,9 @@
         "borderStyle": "solid"
       }
     ]
-  }
+  },
+  "i18n-ally.localesPaths": [
+    "lang",
+    "resources/js/languages"
+  ]
 }
